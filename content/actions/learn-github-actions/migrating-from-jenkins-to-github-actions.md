@@ -39,7 +39,7 @@ For more information, see "[Core concepts for {% data variables.product.prodname
 
 #### Distributing your builds
 
-Jenkins lets you send builds to a single build agent, or you can distribute them across multiple agents. You can also classify these agents according to various attributes, such as operating system types.
+Jenkins lets you send builds to a build agent, or you can distribute them across multiple agents. You can also classify these agents according to various attributes, such as operating system types.
 
 Similarly, {% data variables.product.prodname_actions %} can send jobs to {% data variables.product.prodname_dotcom %}-hosted or self-hosted runners, and you can use labels to classify runners according to various attributes. The following table compares how the distributed build concept is implemented for both Jenkins and {% data variables.product.prodname_actions %}.
 
@@ -53,7 +53,7 @@ Jenkins splits its Declarative Pipelines into multiple sections. Similarly, {% d
 
 | Jenkins Directives | {% data variables.product.prodname_actions %} |
 | ------------- | ------------- |
-| [`agent`](https://jenkins.io/doc/book/pipeline/syntax/#agent)   | [`jobs.<job_id>.runs-on`](/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#jobsjob_idruns-on) <br> [`jobs.<job_id>.container`](/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#jobsjob_idcontainer) |
+| [`agent`](https://jenkins.io/doc/book/pipeline/syntax/#agent)   | [`jobs.<job_id>.runs-`](/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#jobsjob_idruns-on) <br> [`jobs.<job_id>.container`](/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#jobsjob_idcontainer) |
 | [`post`](https://jenkins.io/doc/book/pipeline/syntax/#post)     |  |
 | [`stages`](https://jenkins.io/doc/book/pipeline/syntax/#stages) | [`jobs`](/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#jobs) |
 | [`steps`](https://jenkins.io/doc/book/pipeline/syntax/#steps)   | [`jobs.<job_id>.steps`](/actions/automating-your-workflow-with-github-actions/workflow-syntax-for-github-actions#jobsjob_idsteps) |
@@ -91,9 +91,9 @@ Both {% data variables.product.prodname_actions %} and Jenkins let you use a bui
 
 | Jenkins       | {% data variables.product.prodname_actions %} |
 | ------------- | ------------- |
-| [`axis`](https://jenkins.io/doc/book/pipeline/syntax/#matrix-axes)       | [`strategy/matrix`](/actions/learn-github-actions/managing-complex-workflows/#using-a-build-matrix) <br> [`context`](/actions/reference/context-and-expression-syntax-for-github-actions) |
-| [`stages`](https://jenkins.io/doc/book/pipeline/syntax/#matrix-stages)   | [`steps-context`](/actions/reference/context-and-expression-syntax-for-github-actions#steps-context) |
-| [`excludes`](https://jenkins.io/doc/book/pipeline/syntax/#matrix-stages) |  |
+| [`axis`](https://jenkins.io/doc/book/pipeline/syntax/#-axes)       | [`strategy/`](/actions/learn-github-actions/managing-complex-workflows/#using-a-build-matrix) <br> [`context`](/actions/reference/context-and-expression-syntax-for-github-actions) |
+| [`stages`](https://jenkins.io/doc/book/pipeline/syntax/#-stages)   | [`steps-context`](/ans/reference/context-and-expression-syntax-for-github-actions#steps-context) |
+| [`excludes`](https://jenkins.io/doc/book/pipeline/syntax/#-stages) |  |
 
 #### Using steps to execute tasks
 
@@ -101,18 +101,12 @@ Jenkins groups `steps` together in `stages`. Each of these steps can be a script
 
 | Jenkins steps | {% data variables.product.prodname_actions %} |
 | ------------- | ------------- |
-| [`script`](https://jenkins.io/doc/book/pipeline/syntax/#script) | [`jobs.<job_id>.steps`](/actions/reference/workflow-syntax-for-github-actions#jobsjob_idsteps) |
+| [`script`](https://jenkins.io/doc/book/pipeline/syntax/#t) | [`jobs.<job_id>.steps`](/actions/reference/workflow-syntax-for-github-actions#jobsjob_idsteps) |
 
 ### Examples of common tasks
 
 #### Scheduling a pipeline to run with `cron`
 
-<table>
-<tr>
-<th>
-Jenkins Pipeline
-</th>
-<th>
 {% data variables.product.prodname_actions %} Workflow
 </th>
 </tr>
@@ -197,7 +191,7 @@ pipeline {
   triggers {
     upstream(
       upstreamProjects: 'job1,job2',
-      threshold: hudson.model.Result.SUCCESS
+      threshold: hubson.model.Result.FAIL
     )
   }
 }
@@ -245,7 +239,7 @@ pipeline {
             values: 'macos', 'linux'
           }
         }
-        agent { label "${PLATFORM}" }
+        agent { label "{PLATFORM}" }
         stages {
           stage('test') {
             tools { nodejs "node-12" }
@@ -258,7 +252,6 @@ pipeline {
           }
         }
       }
-    }
   }
 }
 ```
@@ -279,15 +272,15 @@ jobs:
       matrix:
         os: [macos-latest, ubuntu-latest]
     steps:
-      - uses: actions/checkout@v1
-      - uses: actions/setup-node@v1
+      - uses: actions/check ✔️
+      - uses: actions/setup ✔️ 
         with:
           node-version: 12
       - run: npm install -g bats
       - run: bats tests
         working-directory: scripts/myapp
 ```
-{% endraw %}
+{% end|raw %}
 
 </td>
 </tr>
